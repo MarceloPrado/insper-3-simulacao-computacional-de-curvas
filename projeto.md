@@ -11,35 +11,36 @@ Considere uma circunferência C de raio _r_ com um ponto P, fixo. Ao rolar a cir
 * _θ_ = 0 no início, gira _θ_ radianos;
 * o ponto P coincide com a origem do sistema de coordenadas no início do movimento;
 
-<img src="circunf.png",width=300,height=300>
+<img src="circunf.png" style='width: 300px; height: 250px'>
 
 Podemos então escrever:
 
-<img src="equacoes.png",width=200,height=200>
+<img src="equacoes.png" style='width: 150px; height: 75px'>
 
 Com os deslocamentos de x e y em mãos, precisamos descobrir os segmentos de reta para determinar as parametrizações em relação ao parâmetro _θ_. Comecemos por |OT| . Como C está em contato com a reta, deduzimos que:
 
-<img src="ot.png",width=200,height=200>
+
+<img src="ot.png" style='width: 250px; height: 40px'>
 
 Podemos deduzir pela figura as medidas dos outros 3 segmentos restantes:
 
-<img src="seg.png",width=100,height=100>
+<img src="seg.png" style='width: 200px; height: 150px'>
 
 Agora resta substituir as medidas dos segmentos encontrados nas equações 1 e 2 e obtemos a parametrização final:
 
-<img src="param.png",width=300,height=300>
+<img src="param.png" style='width: 250px; height: 30px'>
 
 ## Modelo Computacional
 
 O modelo desenvolvido pelo grupo encontra-se explicado abaixo. Inicialmente, declaramos as variáveis que irão armazenar as parametrizações, além de definir alguns parâmetros e algumas burocracias de código. Também definimos o domínio (ex: de 0 a 2π) das parametrizações.
 ##### Coloque a sua parametrização e o domínio nas variáveis abaixo
 
-<img src="cod1.png",width=300,height=300>
+<img src="cod1.png" style='width: 600px'>
 
 Depois, declaramos uma função cujo objetivo é achar os comprimentos dos segmentos de reta que usaremos para aproximar a curva. Esses segmentos são, como mostra a imagem, a hipotenusa entre dois pontos da curva. A diferença entre esses pontos é a precisão do cálculo. Quanto menor a diferença entre eles, melhor a aproximação. A função recebe os pontos para os quais calcular o segmento de reta, obtidos através da função acima. Além disso, ela retorna o ângulo de inclinação das retas que irá nos ajudar a calcular o tempo.
 
-<img src="hip.png",width=300,height=300>
-<img src="cod2.png",width=300,height=300>
+<img src="hip.png" style="width: 300px">
+<img src="cod2.png",style="width: 300px">
 
 Então, declaramos uma função que irá nos retornar o tempo de percurso de cada segmento de reta. Ela recebe como parâmetros o ângulo de inclinação, a distância (hipotenusa) e a velocidade inicial. E ela retorna o tempo de percurso e a velocidade final (que será utilizada como inicial para a próxima iteração, e assim por diante).
 Para calcular o tempo, utilizamos a equação:
