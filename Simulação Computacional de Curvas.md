@@ -42,7 +42,7 @@ O modelo desenvolvido pelo grupo encontra-se explicado abaixo. Inicialmente, dec
 Depois, declaramos uma função cujo objetivo é achar os comprimentos dos segmentos de reta que usaremos para aproximar a curva. Esses segmentos são, como mostra a imagem, a hipotenusa entre dois pontos da curva. A diferença entre esses pontos é a precisão do cálculo. Quanto menor a diferença entre eles, melhor a aproximação. A função recebe os pontos para os quais calcular o segmento de reta, obtidos através da função acima. Além disso, ela retorna o ângulo de inclinação das retas que irá nos ajudar a calcular o tempo.
 
 <img src="hip.png" style="width: 300px"> Fig 2
-<img src="cod2.png",style="width: 300px">
+<img src="cod2.png",style="width: 250px">
 
 Então, declaramos uma função que irá nos retornar o tempo de percurso de cada segmento de reta. Ela recebe como parâmetros o ângulo de inclinação, a distância (hipotenusa) e a velocidade inicial. E ela retorna o tempo de percurso e a velocidade final (que será utilizada como inicial para a próxima iteração, e assim por diante).
 Para calcular o tempo, utilizamos a equação:
