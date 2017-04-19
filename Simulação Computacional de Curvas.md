@@ -11,7 +11,7 @@ Considere uma circunferência C de raio _r_ com um ponto P, fixo. Ao rolar a cir
 * _θ_ = 0 no início, gira _θ_ radianos;
 * o ponto P coincide com a origem do sistema de coordenadas no início do movimento;
 
-<img src="circunf.png" style='width: 200px'>
+<img src="circunf.png" style='width: 200px'> Fig 1
 
 Podemos então escrever:
 
@@ -41,7 +41,7 @@ O modelo desenvolvido pelo grupo encontra-se explicado abaixo. Inicialmente, dec
 
 Depois, declaramos uma função cujo objetivo é achar os comprimentos dos segmentos de reta que usaremos para aproximar a curva. Esses segmentos são, como mostra a imagem, a hipotenusa entre dois pontos da curva. A diferença entre esses pontos é a precisão do cálculo. Quanto menor a diferença entre eles, melhor a aproximação. A função recebe os pontos para os quais calcular o segmento de reta, obtidos através da função acima. Além disso, ela retorna o ângulo de inclinação das retas que irá nos ajudar a calcular o tempo.
 
-<img src="hip.png" style="width: 300px">
+<img src="hip.png" style="width: 300px"> Fig 2
 <img src="cod2.png",style="width: 300px">
 
 Então, declaramos uma função que irá nos retornar o tempo de percurso de cada segmento de reta. Ela recebe como parâmetros o ângulo de inclinação, a distância (hipotenusa) e a velocidade inicial. E ela retorna o tempo de percurso e a velocidade final (que será utilizada como inicial para a próxima iteração, e assim por diante).
@@ -71,10 +71,8 @@ Abaixo está a validação da nossa simulação computacional. Nela, utilizamos 
 <br>
 
 <div style="height: 250px">
-<span style="float:left">Figura 1</span>
 <br>
 <img src="pic4.png" style="width: 255px; float:left">
-<span style="float:right">Figura 2</span>
 <br>
 <img src="pic5.png" style="width: 250px; float: right">
 </div>
@@ -90,12 +88,16 @@ Tivemos bastante dificuldade para validar o tempo que a bolinha leva para percor
 2. Calcular o tempo que a bolinha leva para percorrer uma reta vertical, com x constante. Da mesma forma que na tentativa acima, tivemos problemas. Dessa vez foi com o código. Ele reclamava de nossa equação utilizada na função `retornaTempo`, provavelmente devido a maneira com que dividimos a curva e distribuímos as forças. Sabendo esse tempo, utilizaríamos a fórmula da cinemática de posição em função do tempo para checarmos por valores iguais. Acreditamos ser por conta da utilização de `cosseno` e não `seno` na função `retornaTempo`. Entretanto, não conseguimos fazer a função funcionar com o `seno`.
 3. Descobrir o tempo real de uma ciclóide e comparar com o tempo calculado pela simulação. Conversamos nosso colega (Eduardo Ferrari) e testamos com a ciclóide construída por ele. Tivemos muita dificuldade para medir o tempo, que da menos de 1 segundo na rampa construída. Além disso, tivemos dificuldade em descobrir os parâmetros exatos da ciclóide construída para equacionar uma semelhante.
 
+Tivemos bastante dificuldade para validar o tempo que a bolinha leva para percorrer determinada curva.
+
+Porém, para a reentrega conseguimos resolver os problemas. Utilizamos o seno na decomposição de forças e, percebemos que para calcular o angulo da inclinação de cada segmento, seria necessário utilizar o módulo de DeltaY/DeltaX. Feito isso o modelo foi corrigido e agora se encontra de acordo com a realidade.
+
 ---
 ### Plots de Curvas Parametrizadas
 
 Abaixo estão exemplos de plots que fizemos para algumas curvas parametrizadas. As imagens à esquerda são as funções utilizadas e o domínio. As imagens à direita são o resultado do plot.
 
-<br> 
+<br>
 
 #### 1. Curva de um oscilador massa-mola
 
