@@ -63,13 +63,18 @@ Ele tem como objetivo o desenvolvimento de uma simulação computacional baseada
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Então, declaramos uma função que irá nos retornar o tempo de percurso de cada segmento de reta. Ela recebe como parâmetros o ângulo de inclinação, a distância (hipotenusa) e a velocidade inicial. E ela retorna o tempo de percurso e a velocidade final (que será utilizada como inicial para a próxima iteração, e assim por diante).
 Para calcular o tempo, utilizamos a equação:
-$$ s = s_{0} + v_{0}.t + \frac{1}{2}.a.t^2 $$
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Como já possuimos os parâmetros _ΔS_ (comprimento do segmento/hipotenusa), $v_{0}$ (inicialmente 0, depois igual à velocidade final no segmento anterior) e _a_ (aceleração da gravidade), só precisamos isolar o _t_.
 
-<br><br><br><br><br><br>
+<div class='picture'>
+$$ s = s_{0} + v_{0}.t + \frac{1}{2}.a.t^2 $$
+<p > Equação 1 </p>
+</div>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Como já possuimos os parâmetros _ΔS_ (comprimento do segmento/hipotenusa), $v_{0}$ (inicialmente 0, depois igual à velocidade final no segmento anterior) e _a_ (aceleração da gravidade), só precisamos isolar o _t_. A Figura 5 representa essa equação em um código de uma função.
+
+<br>
 <div class="picture">
 		<img src="pic1.png" style="width: 250px" class='middle'>
-		<p> Figura 5: Função que encontra o tempo que leva para a bolinha percorrer determinado trecho e sua velocidade final</p>
+		<p> Figura 5: Função que encontra o tempo que leva para a <br> bolinha percorrer determinado trecho e sua velocidade final</p>
 </div>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por fim, contruímos o loop que junta todas essa funções (figura 6). Ele roda para cada intervalo de precisão definido, e tem o seguinte comportamento:
@@ -115,17 +120,26 @@ $$ s = s_{0} + v_{0}.t + \frac{1}{2}.a.t^2 $$
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Para o cálculo do tempo, utilizamos uma reta vertical definida com x constante. Em seguida, calculamos o tempo que levaria para a bolinha percorrer o trajeto inteiro e validamos utilizando a física. Esse tempo precisa ser igual ao tempo necessário para ela cair em queda-livre.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tivemos bastante dificuldade para validar o tempo que a bolinha leva para percorrer determinada curva. Abaixo estão descritas as tentativas realizadas.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tivemos bastante dificuldade **na primeira versão do relatório** para validar o tempo que a bolinha leva para percorrer determinada curva. Abaixo estão descritas as tentativas realizadas.
 
 1. Calcular o tempo que a bolinha leva para percorrer uma reta. Tivemos problemas para calcular o tempo teórico que levaria (tanto pela literatura matemática quanto pela física), e por isso acabamos trocando de tentativa.
 
 2. Calcular o tempo que a bolinha leva para percorrer uma reta vertical, com x constante. Da mesma forma que na tentativa acima, tivemos problemas. Dessa vez foi com o código. Ele reclamava de nossa equação utilizada na função `retornaTempo`, provavelmente devido a maneira com que dividimos a curva e distribuímos as forças. Sabendo esse tempo, utilizaríamos a fórmula da cinemática de posição em função do tempo para checarmos por valores iguais. Acreditamos ser por conta da utilização de `cosseno` e não `seno` na função `retornaTempo`. Entretanto, não conseguimos fazer a função funcionar com o `seno`.
 3. Descobrir o tempo real de uma ciclóide e comparar com o tempo calculado pela simulação. Conversamos nosso colega (Eduardo Ferrari) e testamos com a ciclóide construída por ele. Tivemos muita dificuldade para medir o tempo, que da menos de 1 segundo na rampa construída. Além disso, tivemos dificuldade em descobrir os parâmetros exatos da ciclóide construída para equacionar uma semelhante.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Porém**, para a reentrega conseguimos resolver os problemas. Utilizamos o seno na decomposição de forças e, percebemos que para calcular o angulo da inclinação de cada segmento, seria necessário utilizar o módulo de DeltaY/DeltaX. Feito isso, o modelo foi corrigido e agora se encontra de acordo com a realidade.
-<br><br>
----
-<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Porém**, para a reentrega conseguimos resolver os problemas. Utilizamos o seno na decomposição de forças e, percebemos que para calcular o angulo da inclinação de cada segmento, seria necessário utilizar o módulo de DeltaY/DeltaX. Feito isso, o modelo foi corrigido e agora se encontra de acordo com a realidade. Segue abaixo a validação física-teórica para o caso de uma reta decrescente.
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Primeiro, criamos os parâmetros de nossa reta. Seu comprimento é $\sqrt{200}$ (aproximadamente 14,14) e sua inclinação é 45º. Consideramos $v_{0} = 0$ e $∆s = 14,14$. Em seguida, calculamos o valor da aceleração, utilizando a seguinte lógica: $$a = g.seno(45º) = 9.81 . sen(45º) = 6,93 m/s^2$$
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Por fim, aplicamos esses valores na _Equação 1_:
+
+$$14,14 = \frac{6,93 . t^2}{2}$$
+$$t = \sqrt{\frac{28,28}{6,93}} \simeq 2,02 s$$ 
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Comparando com o tempo simulado da figura 8, pode-se perceber que os dois são muito próximos. Portanto, nosso modelo se comporta de maneira adequada com o esperado.
+<br>
+--
+<br>
 ### Plots de Curvas Parametrizadas
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A partir da função definida na figura 2, `retornaParametrizacao`, foi possível experimentar diversos modelos de curvas para testar nossa simulação. Abaixo estão exemplos de plots que fizemos para algumas curvas parametrizadas. As imagens à esquerda são as funções utilizadas e o domínio. As imagens à direita são o resultado do plot.
@@ -156,6 +170,7 @@ $$ s = s_{0} + v_{0}.t + \frac{1}{2}.a.t^2 $$
 	</div>
 </div>
 
+<br>
 #### 3. Curva de uma elipse
 <div class='two-pictures' style='align-items: flex-end;'>
 	<div class="picture">
@@ -172,6 +187,6 @@ $$ s = s_{0} + v_{0}.t + \frac{1}{2}.a.t^2 $$
 
 ### Conclusões
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Um dos objetivos do projeto era identificar se a bolinha caía mais rápido em uma ciclóide do que em outra curva qualquer. Comparando as figuras 1 e 5, percebemos que de fato a ciclóide apresenta um menor tempo de queda, com 0.767 segundos em comparação aos 2.260 segundos da circunferência. Entretanto, precisamos analisar os eixos. Tivemos problemas na hora de plotá-las com ponto final e inicial definidos, já que nosso código foi estruturado com base em domínios. Dessa forma, não podemos comparar seus tempos com exatidão.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Um dos objetivos do projeto era identificar se a bolinha caía mais rápido em uma ciclóide do que em outra curva qualquer. Comparando as figuras 7 e o Item 2 acima, percebemos que de fato a ciclóide apresenta um menor tempo de queda, com 0.767 segundos em comparação aos 2.260 segundos da circunferência. Entretanto, precisamos analisar os eixos. Tivemos problemas na hora de plotá-las com ponto final e inicial definidos, já que nosso código foi estruturado com base em domínios. Dessa forma, não podemos comparar seus tempos com exatidão.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O modelo computacional criado é válido. Inicialmente, tivemos algumas dificuldades em validá-lo usando a física. Porém, após uma segunda tentativa com a ajuda do Professor Fabio Orfali, corrigimos o erro inicial e agora o modelo representa a realidade.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O modelo computacional criado é válido. Inicialmente, tivemos algumas dificuldades em validá-lo usando a física. Porém, após uma segunda tentativa com a ajuda do Professor Fábio Orfali, corrigimos o erro inicial e agora o modelo representa melhor a realidade.
