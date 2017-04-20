@@ -12,7 +12,7 @@ Ele tem como objetivo o desenvolvimento de uma simulação computacional baseada
 * o ponto P coincide com a origem do sistema de coordenadas no início do movimento;
 
 <div class="picture">
-	<img src="circunf.png" style='width: 200px'> 
+	<img src="circunf.png" style='width: 200px'>
 	<p>Figura 1: Explicação da dedução geométrica</p>
 </div>
 
@@ -44,7 +44,7 @@ Ele tem como objetivo o desenvolvimento de uma simulação computacional baseada
 
 <div class='picture'>
 	<img src="cod1.png" style='width: 300px'>
-	<span>Figura 2: função responsável por calcular a parametrização da curva</span>
+	<span>Figura 2: Função responsável por calcular a parametrização da curva</span>
 </div>
 
 
@@ -62,7 +62,7 @@ Ele tem como objetivo o desenvolvimento de uma simulação computacional baseada
 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Então, declaramos uma função que irá nos retornar o tempo de percurso de cada segmento de reta. Ela recebe como parâmetros o ângulo de inclinação, a distância (hipotenusa) e a velocidade inicial. E ela retorna o tempo de percurso e a velocidade final (que será utilizada como inicial para a próxima iteração, e assim por diante).
-Para calcular o tempo, utilizamos a equação: 
+Para calcular o tempo, utilizamos a equação:
 $$ s = s_{0} + v_{0}.t + \frac{1}{2}.a.t^2 $$
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Como já possuimos os parâmetros _ΔS_ (comprimento do segmento/hipotenusa), $v_{0}$ (inicialmente 0, depois igual à velocidade final no segmento anterior) e _a_ (aceleração da gravidade), só precisamos isolar o _t_.
 
@@ -174,4 +174,4 @@ $$ s = s_{0} + v_{0}.t + \frac{1}{2}.a.t^2 $$
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Um dos objetivos do projeto era identificar se a bolinha caía mais rápido em uma ciclóide do que em outra curva qualquer. Comparando as figuras 1 e 5, percebemos que de fato a ciclóide apresenta um menor tempo de queda, com 0.767 segundos em comparação aos 2.260 segundos da circunferência. Entretanto, precisamos analisar os eixos. Tivemos problemas na hora de plotá-las com ponto final e inicial definidos, já que nosso código foi estruturado com base em domínios. Dessa forma, não podemos comparar seus tempos com exatidão.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O modelo computacional criado é válido. Entretanto, tivemos algumas dificuldades em validá-lo usando a física e a matemática. Por conta disso não conseguimos corrigir alguns problemas, principalmente os relacionados com a física do projeto. Acreditamos ter criado um método correto, porém não podemos ter certeza pela falta de uma validação coerente. Em uma segunda iteração desse projeto, iremos verificar a equação utilizada na função `retornaTempo` e nos aprofundar em alguma validação.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;O modelo computacional criado é válido. Inicialmente, tivemos algumas dificuldades em validá-lo usando a física. Porém, após uma segunda tentativa com a ajuda do Professor Fabio Orfali, corrigimos o erro inicial e agora o modelo representa a realidade.
